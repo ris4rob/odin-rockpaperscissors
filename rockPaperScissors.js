@@ -5,6 +5,7 @@ let playerChoice = '';
 let computerScore = 0;
 let playerScore = 0;
 let round = 0;
+let roundWinner = '';
 
 function getComputerChoice() {
   computerChoice =
@@ -30,32 +31,39 @@ function playRound() {
   getPlayerChoice();
 
   if (playerChoice === 'paper' && computerChoice === 'rock') {
-    console.log('You win Paper beats rock');
     playerScore += 1;
     round += 1;
+    roundWinner = 'You win Paper beats rock';
+    return roundWinner;
   } else if (playerChoice === 'paper' && computerChoice === 'scissors') {
-    console.log('Computer wins Scissors beats paper');
     computerScore += 1;
     round += 1;
+    roundWinner = 'Computer wins Scissors beats paper';
+    return roundWinner;
   } else if (playerChoice === 'scissors' && computerChoice === 'rock') {
-    console.log('Computer wins Rock beats Paper');
     computerScore += 1;
     round += 1;
+    roundWinner = 'Computer wins Rock beats Paper';
+    return roundWinner;
   } else if (playerChoice === 'scissors' && computerChoice === 'paper') {
-    console.log('You win Scissors beats Paper');
     playerScore += 1;
     round += 1;
+    roundWinner = 'You win Scissors beats Paper';
+    return roundWinner;
   } else if (playerChoice === 'rock' && computerChoice === 'paper') {
-    console.log('Computer wins Paper beats Rock');
     computerScore += 1;
     round += 1;
+    roundWinner = 'Computer wins Paper beats Rock';
+    return roundWinner;
   } else if (playerChoice === 'rock' && computerChoice === 'scissors') {
-    console.log('You win Rock beats Scissors');
     playerScore += 1;
     round += 1;
+    roundWinner = 'You win Rock beats Scissors';
+    return roundWinner;
   } else if (playerChoice === computerChoice) {
-    console.log('Tie!!');
     round += 1;
+    roundWinner = 'Tie!!';
+    return roundWinner;
   } else {
     console.error('Something Went Wrong');
   }
@@ -65,6 +73,7 @@ function game() {
   while (round < 5) {
     playRound(playerChoice, computerChoice);
 
+    console.log(roundWinner);
     /* Reset Choices */
     computerChoice = ['scissors', 'paper', 'rock'];
     playerChoice = '';

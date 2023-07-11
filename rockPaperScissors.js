@@ -95,6 +95,15 @@ function game() {
   round = 0;
 }
 
+function btnClick(e) {
+  console.log(e.target.id);
+}
+
+window.addEventListener('click', btnClick);
+
+const btns = document.querySelectorAll('button');
+btns.forEach((btn) => btn.addEventListener('click', btnClick));
+
 game();
 
 console.log(playerChoice);

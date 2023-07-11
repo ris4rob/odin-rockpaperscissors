@@ -36,3 +36,19 @@ button {
           border-radius: 16px;
           cursor: pointer;
 }
+
+.score-wrapper {
+          width: 50%;
+          height: 40px;
+          margin-top: 3rem;
+}
+
+.score, .roundwinner, .gamewinner, .roundnumber {
+          text-align: center;
+          color: #242424;
+          padding: 1rem;
+          font-size: 1.2rem;
+          font-weight: bold;
+          text-transform: uppercase;
+}
+

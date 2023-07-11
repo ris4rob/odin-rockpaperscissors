@@ -6,6 +6,10 @@ let computerScore = 0;
 let playerScore = 0;
 let round = 0;
 let roundWinner = '';
+const score = document.querySelector('.score');
+const roundwinner = document.querySelector('.roundwinner');
+const gamewinner = document.querySelector('.gamewinner');
+const roundnumber = document.querySelector('.roundnumber');
 
 function getComputerChoice() {
   computerChoice =
@@ -13,22 +17,22 @@ function getComputerChoice() {
   console.log(computerChoice);
 }
 
-function getPlayerChoice() {
-  playerChoice = prompt('Scissors Paper or Rock???').toLowerCase();
+// function getPlayerChoice() {
+//   playerChoice = prompt('Scissors Paper or Rock???').toLowerCase();
 
-  if (
-    playerChoice != 'scissors' &&
-    playerChoice != 'paper' &&
-    playerChoice != 'rock'
-  ) {
-    alert('Must be paper scissors or rock');
-    getPlayerChoice();
-  }
-}
+//   if (
+//     playerChoice != 'scissors' &&
+//     playerChoice != 'paper' &&
+//     playerChoice != 'rock'
+//   ) {
+//     alert('Must be paper scissors or rock');
+//     getPlayerChoice();
+//   }
+// }
 
-function playRound() {
+function playRound(e) {
   getComputerChoice();
-  getPlayerChoice();
+  playerChoice = e.target.id;
 
   if (playerChoice === 'paper' && computerChoice === 'rock') {
     playerScore += 1;
@@ -69,41 +73,43 @@ function playRound() {
   }
 }
 
-function game() {
+function game(e) {
   while (round < 5) {
-    playRound(playerChoice, computerChoice);
+    playRound(e, computerChoice);
 
-    console.log(roundWinner);
+    roundnumber.textContent = `Round: ${round}`;
+    roundwinner.textContent = roundWinner;
+    score.textContent = `Player Score: ${playerScore}    Computer Score: ${computerScore}`;
     /* Reset Choices */
     computerChoice = ['scissors', 'paper', 'rock'];
     playerChoice = '';
   }
 
+  round = 0;
+
   if (playerScore < computerScore) {
-    console.log('Computer wins');
+    gamewinner.textContent = 'Computer wins';
   } else if (playerScore > computerScore) {
-    console.log('Player wins');
+    gamewinner.textContent = 'Player wins';
   } else if (playerScore === computerScore) {
-    console.log('Draw!!');
+    gamewinner.textContent = 'Draw!!';
   } else {
     console.error('Something went wrong');
   }
+
+  // roundnumber.textContent = '';
+  // roundwinner.textContent = '';
+  // score.textContent = '';
 
   /* Reset variables */
   computerScore = 0;
   playerScore = 0;
   round = 0;
+
+  return;
 }
 
-function btnClick(e) {
-  console.log(e.target.id);
-}
-
-window.addEventListener('click', btnClick);
+// window.addEventListener('click', playRound);
 
 const btns = document.querySelectorAll('button');
-btns.forEach((btn) => btn.addEventListener('click', btnClick));
-
-game();
-
-console.log(playerChoice);
+btns.forEach((btn) => btn.addEventListener('click', game));

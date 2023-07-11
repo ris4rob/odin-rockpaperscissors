@@ -85,14 +85,15 @@ function game(e) {
     playerChoice = '';
   }
 
-  round = 0;
-
   if (playerScore < computerScore) {
     gamewinner.textContent = 'Computer wins';
+    round = 0;
   } else if (playerScore > computerScore) {
     gamewinner.textContent = 'Player wins';
+    round = 0;
   } else if (playerScore === computerScore) {
     gamewinner.textContent = 'Draw!!';
+    round = 0;
   } else {
     console.error('Something went wrong');
   }
@@ -104,7 +105,6 @@ function game(e) {
   /* Reset variables */
   computerScore = 0;
   playerScore = 0;
-  round = 0;
 
   return;
 }

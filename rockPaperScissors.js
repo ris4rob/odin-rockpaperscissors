@@ -73,6 +73,12 @@ function playRound(e) {
   }
 }
 
+function disableButtons() {
+  btns.forEach((elem) => {
+    elem.disabled = true;
+  });
+}
+
 function game(e) {
   while (round < 5) {
     playRound(e, computerChoice);
@@ -88,12 +94,15 @@ function game(e) {
   if (playerScore < computerScore) {
     gamewinner.textContent = 'Computer wins';
     round = 0;
+    disableButtons();
   } else if (playerScore > computerScore) {
     gamewinner.textContent = 'Player wins';
     round = 0;
+    disableButtons();
   } else if (playerScore === computerScore) {
     gamewinner.textContent = 'Draw!!';
     round = 0;
+    disableButtons();
   } else {
     console.error('Something went wrong');
   }

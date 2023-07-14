@@ -80,7 +80,7 @@ function disableButtons() {
 }
 
 function game(e) {
-  while (round < 5) {
+  if (round < 5) {
     playRound(e, computerChoice);
 
     roundnumber.textContent = `Round: ${round}`;
@@ -89,22 +89,19 @@ function game(e) {
     /* Reset Choices */
     computerChoice = ['scissors', 'paper', 'rock'];
     playerChoice = '';
-  }
-
-  if (playerScore < computerScore) {
-    gamewinner.textContent = 'Computer wins';
-    round = 0;
-    disableButtons();
-  } else if (playerScore > computerScore) {
-    gamewinner.textContent = 'Player wins';
-    round = 0;
-    disableButtons();
-  } else if (playerScore === computerScore) {
-    gamewinner.textContent = 'Draw!!';
-    round = 0;
-    disableButtons();
-  } else {
-    console.error('Something went wrong');
+  } else if (round === 5) {
+    if (playerScore < computerScore) {
+      gamewinner.textContent = 'Computer wins ' + ' Reload to play again';
+      disableButtons();
+    } else if (playerScore > computerScore) {
+      gamewinner.textContent = 'Player wins ' + ' Reload to play again';
+      disableButtons();
+    } else if (playerScore === computerScore) {
+      gamewinner.textContent = 'Draw!! ' + ' Reload to play again';
+      disableButtons();
+    } else {
+      console.error('Something went wrong');
+    }
   }
 
   // roundnumber.textContent = '';
@@ -112,8 +109,8 @@ function game(e) {
   // score.textContent = '';
 
   /* Reset variables */
-  computerScore = 0;
-  playerScore = 0;
+  // computerScore = 0;
+  // playerScore = 0;
 
   return;
 }
